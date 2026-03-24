@@ -1,5 +1,13 @@
 import { motion } from 'framer-motion';
 
+// Pre-computed "chaos" block sizes — deterministic, no Math.random() during render
+const CHAOS_BLOCKS = [
+  { w: 12, h: 7, opacity: 35 }, { w: 8, h: 9, opacity: 25 },
+  { w: 14, h: 5, opacity: 40 }, { w: 7, h: 8, opacity: 30 },
+  { w: 10, h: 6, opacity: 45 }, { w: 15, h: 4, opacity: 22 },
+  { w: 9, h: 10, opacity: 38 }, { w: 11, h: 5, opacity: 28 },
+];
+
 const PRINCIPLES = [
   {
     title: 'One Studio, Not Eight',
@@ -167,14 +175,14 @@ function PrincipleVisual({ type, color }: { type: string; color: string }) {
           transition={{ delay: 0.2 }}
           style={{ backgroundColor: `${color}08` }}
         >
-          {Array.from({ length: 8 }, (_, i) => (
+          {CHAOS_BLOCKS.map((b, i) => (
             <div
               key={i}
               className="rounded-sm"
               style={{
-                width: 6 + Math.random() * 10,
-                height: 4 + Math.random() * 6,
-                backgroundColor: `${color}${20 + Math.floor(Math.random() * 30)}`,
+                width: b.w,
+                height: b.h,
+                backgroundColor: `${color}${b.opacity}`,
               }}
             />
           ))}

@@ -19,6 +19,14 @@ export default function ClearanceModal({
   open: boolean;
   onClose: () => void;
 }) {
+  return (
+    <AnimatePresence>
+      {open && <ClearanceModalInner onClose={onClose} />}
+    </AnimatePresence>
+  );
+}
+
+function ClearanceModalInner({ onClose }: { onClose: () => void }) {
   const [step, setStep] = useState<Step>('classify');
   const [role, setRole] = useState('');
   const [name, setName] = useState('');
@@ -27,18 +35,6 @@ export default function ClearanceModal({
   const [intent, setIntent] = useState('');
   const nameRef = useRef<HTMLInputElement>(null);
   const intentRef = useRef<HTMLTextAreaElement>(null);
-
-  // Reset on open
-  useEffect(() => {
-    if (open) {
-      setStep('classify');
-      setRole('');
-      setName('');
-      setEmail('');
-      setOrg('');
-      setIntent('');
-    }
-  }, [open]);
 
   // Auto-focus fields
   useEffect(() => {
@@ -61,8 +57,6 @@ export default function ClearanceModal({
   };
 
   return (
-    <AnimatePresence>
-      {open && (
         <>
           {/* Backdrop */}
           <motion.div
@@ -294,8 +288,6 @@ export default function ClearanceModal({
             </div>
           </motion.div>
         </>
-      )}
-    </AnimatePresence>
   );
 }
 

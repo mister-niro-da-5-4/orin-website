@@ -108,7 +108,7 @@ function FlowVisual({ type, color }: { type: string; color: string }) {
           <motion.div
             key={i}
             initial={{ height: 0, opacity: 0 }}
-            whileInView={{ height: 16 + Math.random() * 40, opacity: 0.7 }}
+            whileInView={{ height: 16 + ((i * 7 + 13) % 40), opacity: 0.7 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.06, duration: 0.3 }}
             className="w-2.5 rounded-sm"
