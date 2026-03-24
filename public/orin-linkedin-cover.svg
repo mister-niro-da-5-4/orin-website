@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1584" height="396" viewBox="0 0 1584 396" fill="none">
+  <!-- Background -->
+  <rect width="1584" height="396" fill="#030303"/>
+
+  <!-- Subtle grid dots — the constellation feel -->
+  <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+    <circle cx="20" cy="20" r="0.5" fill="white" opacity="0.08"/>
+  </pattern>
+  <rect width="1584" height="396" fill="url(#dots)"/>
+
+  <!-- Ambient glow left -->
+  <ellipse cx="300" cy="198" rx="200" ry="150" fill="#FF4F00" opacity="0.03"/>
+
+  <!-- Ambient glow right -->
+  <ellipse cx="1300" cy="198" rx="180" ry="120" fill="#8B5CF6" opacity="0.02"/>
+
+  <!-- Horizontal accent line -->
+  <line x1="120" y1="198" x2="500" y2="198" stroke="#FF4F00" stroke-width="0.5" stroke-opacity="0.15"/>
+  <line x1="1084" y1="198" x2="1464" y2="198" stroke="#FF4F00" stroke-width="0.5" stroke-opacity="0.15"/>
+
+  <!-- Orin mark — left of center -->
+  <g transform="translate(620, 118)">
+    <!-- Outer ring -->
+    <circle cx="50" cy="50" r="44" stroke="#FF4F00" stroke-width="1.8" fill="none"/>
+    <!-- Orbital ring -->
+    <ellipse cx="50" cy="50" rx="37" ry="15" stroke="#FF4F00" stroke-width="0.8" stroke-opacity="0.3" fill="none" transform="rotate(-30 50 50)"/>
+    <!-- Core -->
+    <defs>
+      <radialGradient id="core" cx="40%" cy="35%" r="60%">
+        <stop offset="0%" stop-color="#ffad73"/>
+        <stop offset="40%" stop-color="#FF4F00"/>
+        <stop offset="100%" stop-color="#7a2500"/>
+      </radialGradient>
+    </defs>
+    <circle cx="50" cy="50" r="11" fill="url(#core)"/>
+    <circle cx="47" cy="47" r="2.5" fill="white" opacity="0.4"/>
+  </g>
+
+  <!-- ORIN wordmark -->
+  <text x="740" y="183" fill="white" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="48" letter-spacing="12">ORIN</text>
+
+  <!-- Divider -->
+  <line x1="740" y1="198" x2="930" y2="198" stroke="#FF4F00" stroke-width="1" stroke-opacity="0.3"/>
+
+  <!-- Tagline -->
+  <text x="740" y="230" fill="#999999" font-family="ui-monospace, monospace" font-weight="400" font-size="13" letter-spacing="3">THE FIRST LEARNING EXPERIENCE DESIGN SYSTEM</text>
+
+  <!-- Layer indicators — subtle, right side -->
+  <g transform="translate(1100, 145)" opacity="0.4">
+    <text fill="#8B5CF6" font-family="ui-monospace, monospace" font-size="9" letter-spacing="2">01 SIGNAL</text>
+    <text y="18" fill="#3B82F6" font-family="ui-monospace, monospace" font-size="9" letter-spacing="2">02 BLUEPRINT</text>
+    <text y="36" fill="#FF4F00" font-family="ui-monospace, monospace" font-size="9" letter-spacing="2">03 STUDIO</text>
+    <text y="54" fill="#10B981" font-family="ui-monospace, monospace" font-size="9" letter-spacing="2">04 GOVERN</text>
+    <text y="72" fill="#22D3EE" font-family="ui-monospace, monospace" font-size="9" letter-spacing="2">05 PULSE</text>
+  </g>
+
+  <!-- Filament connections between layer labels -->
+  <g opacity="0.1">
+    <line x1="1095" y1="150" x2="1095" y2="220" stroke="#FF4F00" stroke-width="0.5"/>
+  </g>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="392" width="1584" height="4" fill="#FF4F00" opacity="0.2"/>
+</svg>

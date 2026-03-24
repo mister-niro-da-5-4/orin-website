@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, forwardRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import OrinLogo from './OrinLogo';
 
@@ -300,8 +300,6 @@ export default function ClearanceModal({
 }
 
 /** Terminal-styled input field with > prefix */
-import { forwardRef } from 'react';
-
 const TerminalInput = forwardRef<
   HTMLInputElement,
   { label: string; value: string; onChange: (v: string) => void; placeholder?: string; type?: string }

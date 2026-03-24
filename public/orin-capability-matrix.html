@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Orin LXDS — Capability Matrix</title>
+<style>
+  @page { size: landscape; margin: 0.5in; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: ui-monospace, 'SF Mono', monospace;
+    background: #030303;
+    color: #ccc;
+    font-size: 9px;
+    line-height: 1.4;
+    padding: 32px;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 16px;
+  }
+  .header h1 {
+    font-size: 18px;
+    color: #FF4F00;
+    letter-spacing: 4px;
+    font-weight: 800;
+  }
+  .header .sub {
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 2px;
+  }
+  .header .date {
+    font-size: 9px;
+    color: #444;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  th {
+    text-align: left;
+    padding: 8px 6px;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #666;
+    border-bottom: 1px solid #222;
+    font-weight: 600;
+  }
+  th.orin {
+    color: #FF4F00;
+  }
+  th:first-child { width: 13%; }
+  th:nth-child(2) { width: 13%; color: #FF4F00; }
+  td {
+    padding: 6px;
+    border-bottom: 1px solid #111;
+    vertical-align: top;
+    font-size: 8px;
+  }
+  tr.category-row td {
+    padding-top: 14px;
+    font-size: 9px;
+    font-weight: 700;
+    color: #FF4F00;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #FF4F00;
+    background: transparent;
+  }
+  .pip {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+  .pip-full { background: #FF4F00; box-shadow: 0 0 4px rgba(255,79,0,0.4); }
+  .pip-partial { background: #555; }
+  .pip-none { background: transparent; border: 1px solid #333; }
+  .pip-planned { background: transparent; border: 1px dashed #FF4F00; }
+  .note { color: #666; font-size: 7px; display: block; margin-top: 2px; }
+  .orin-cell { color: #eee; }
+  .orin-cell .note { color: #FF4F00; opacity: 0.7; }
+  .footer {
+    margin-top: 24px;
+    padding-top: 12px;
+    border-top: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+    color: #444;
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .legend {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>ORIN</h1>
+    <div class="sub">CAPABILITY MATRIX — LEARNING EXPERIENCE DESIGN SYSTEM</div>
+  </div>
+  <div class="date">orinlxds.com · March 2026</div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Capability</th>
+      <th class="orin">Orin</th>
+      <th>Sana Learn</th>
+      <th>Articulate 360</th>
+      <th>Captivate</th>
+      <th>Lectora</th>
+      <th>iSpring</th>
+      <th>Elucidat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Architecture -->
+    <tr class="category-row"><td colspan="8">Architecture</td></tr>
+    <tr>
+      <td>Graph-based course model</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> Yes <span class="note">DAG with conditional edges</span></td>
+      <td><span class="pip pip-none"></span> No <span class="note">Linear content blocks</span></td>
+      <td><span class="pip pip-none"></span> No <span class="note">Linear slides</span></td>
+      <td><span class="pip pip-none"></span> No <span class="note">Linear slides</span></td>
+      <td><span class="pip pip-none"></span> No <span class="note">Linear slides</span></td>
+      <td><span class="pip pip-none"></span> No <span class="note">PowerPoint plugin</span></td>
+      <td><span class="pip pip-none"></span> No <span class="note">Template blocks</span></td>
+    </tr>
+    <tr>
+      <td>State machine engine</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> Yes <span class="note">XState hierarchical actors</span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+    </tr>
+    <tr>
+      <td>Spatial canvas authoring</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> Yes <span class="note">Orbit → Module → Slide</span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+    </tr>
+
+    <!-- Authoring -->
+    <tr class="category-row"><td colspan="8">Authoring</td></tr>
+    <tr>
+      <td>Live WYSIWYG editing</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> Yes <span class="note">Preview IS the editor</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Block-based editor</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Separate preview</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Separate preview</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Separate preview</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Via PowerPoint</span></td>
+      <td><span class="pip pip-full"></span> Yes <span class="note">WYSIWYG</span></td>
+    </tr>
+    <tr>
+      <td>Branching scenarios</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> Native <span class="note">Graph edges with conditions</span></td>
+      <td><span class="pip pip-none"></span> No <span class="note">Linear only</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Storyline only, manual</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Limited</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Supported</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Clunky, limited</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Supported + role selectors</span></td>
+    </tr>
+    <tr>
+      <td>Custom simulations</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> Yes <span class="note">Sandboxed web components</span></td>
+      <td><span class="pip pip-none"></span> No <span class="note">Template-bound</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">JS triggers</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Screen recording</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Custom HTML</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Limited, no failure paths</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Systems sims + games</span></td>
+    </tr>
+
+    <!-- Intelligence -->
+    <tr class="category-row"><td colspan="8">Intelligence</td></tr>
+    <tr>
+      <td>Learning science engine</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> Yes <span class="note">Mayer, Sweller, Bloom's, spaced repetition</span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+    </tr>
+    <tr>
+      <td>Cognitive load analysis</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> Yes <span class="note">Per-node, real-time</span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+    </tr>
+    <tr>
+      <td>AI co-authoring</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> Ambient <span class="note">Validates, inspires, never overwrites</span></td>
+      <td><span class="pip pip-full"></span> Yes <span class="note">AI-native, generate from docs</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Drafts, alt text, captions</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Avatars, TTS, image gen</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">AI-assisted content</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">AI voiceover</span></td>
+      <td><span class="pip pip-partial"></span> Partial <span class="note">Auto-translate</span></td>
+    </tr>
+    <tr>
+      <td>Domain-aware RAG pipeline</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> Yes <span class="note">Brand, learners, domain, taste</span></td>
+      <td><span class="pip pip-full"></span> Yes <span class="note">RAG: org docs, Slack, manuals</span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+    </tr>
+
+    <!-- Accessibility -->
+    <tr class="category-row"><td colspan="8">Accessibility</td></tr>
+    <tr>
+      <td>Ambient accessibility engine</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> Always-on <span class="note">WCAG 2.2 AA — contrast, focus, ARIA</span></td>
+      <td><span class="pip pip-partial"></span> Basic</td>
+      <td><span class="pip pip-partial"></span> Checker tool</td>
+      <td><span class="pip pip-partial"></span> Checker tool</td>
+      <td><span class="pip pip-partial"></span> Strong <span class="note">508 check tool + WCAG 2.2</span></td>
+      <td><span class="pip pip-partial"></span> Basic</td>
+      <td><span class="pip pip-partial"></span> Basic</td>
+    </tr>
+    <tr>
+      <td>Visual accessibility overlay</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> Yes <span class="note">Tab order, ARIA labels, focus indicators</span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+    </tr>
+
+    <!-- Output & Data -->
+    <tr class="category-row"><td colspan="8">Output & Data</td></tr>
+    <tr>
+      <td>Auto xAPI telemetry</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> Zero-config <span class="note">Emitted from state transitions</span></td>
+      <td><span class="pip pip-partial"></span> <span class="note">Platform analytics only</span></td>
+      <td><span class="pip pip-partial"></span> <span class="note">Custom xAPI triggers (Storyline)</span></td>
+      <td><span class="pip pip-partial"></span> <span class="note">Manual config</span></td>
+      <td><span class="pip pip-partial"></span> <span class="note">Manual config</span></td>
+      <td><span class="pip pip-partial"></span> <span class="note">Basic</span></td>
+      <td><span class="pip pip-partial"></span> <span class="note">xAPI labelling (2025)</span></td>
+    </tr>
+    <tr>
+      <td>First-class learning objectives</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> Yes <span class="note">Per-node mastery tracking</span></td>
+      <td><span class="pip pip-partial"></span> <span class="note">AI-generated assessments</span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-partial"></span> Supported</td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+    </tr>
+    <tr>
+      <td>Output formats</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> All <span class="note">SCORM 1.2, 2004, xAPI, LTI 1.3, standalone</span></td>
+      <td><span class="pip pip-partial"></span> <span class="note">Platform-locked, SCORM import</span></td>
+      <td><span class="pip pip-full"></span> <span class="note">SCORM, xAPI, AICC, cmi5</span></td>
+      <td><span class="pip pip-full"></span> <span class="note">SCORM, xAPI, AICC</span></td>
+      <td><span class="pip pip-full"></span> <span class="note">SCORM, xAPI, AICC, cmi5, HTML5</span></td>
+      <td><span class="pip pip-full"></span> <span class="note">SCORM, xAPI</span></td>
+      <td><span class="pip pip-full"></span> <span class="note">SCORM, SCORM 2004, xAPI</span></td>
+    </tr>
+
+    <!-- Collaboration -->
+    <tr class="category-row"><td colspan="8">Collaboration</td></tr>
+    <tr>
+      <td>Real-time multiplayer</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> CRDTs <span class="note">Conflict-free, offline-first</span></td>
+      <td><span class="pip pip-full"></span> Yes <span class="note">Real-time collaborative</span></td>
+      <td><span class="pip pip-none"></span> <span class="note">Review comments only</span></td>
+      <td><span class="pip pip-none"></span> <span class="note">Cloud review links</span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-partial"></span> <span class="note">Multi-author editing</span></td>
+    </tr>
+    <tr>
+      <td>Stakeholder review surface</td>
+      <td class="orin-cell"><span class="pip pip-full"></span> Dedicated <span class="note">Comment, flag, voice note</span></td>
+      <td><span class="pip pip-partial"></span> <span class="note">In-platform comments</span></td>
+      <td><span class="pip pip-partial"></span> <span class="note">Review 360</span></td>
+      <td><span class="pip pip-partial"></span> <span class="note">Cloud review</span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-partial"></span> <span class="note">Comments</span></td>
+    </tr>
+    <tr>
+      <td>Competitor file import</td>
+      <td class="orin-cell"><span class="pip pip-planned"></span> Planned <span class="note">.story, Rise, Captivate</span></td>
+      <td><span class="pip pip-partial"></span> <span class="note">SCORM, PDF, image</span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-partial"></span> <span class="note">PowerPoint import</span></td>
+      <td><span class="pip pip-none"></span></td>
+      <td><span class="pip pip-partial"></span> <span class="note">PowerPoint</span></td>
+      <td><span class="pip pip-none"></span></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+  <div class="legend">
+    <div class="legend-item"><span class="pip pip-full"></span> Full support</div>
+    <div class="legend-item"><span class="pip pip-partial"></span> Partial</div>
+    <div class="legend-item"><span class="pip pip-none"></span> None</div>
+    <div class="legend-item"><span class="pip pip-planned"></span> Planned</div>
+  </div>
+  <div>ORIN LXDS — orinlxds.com — An Artie Ai Company</div>
+</div>
+
+</body>
+</html>
