@@ -75,6 +75,17 @@ const SCENARIOS: Scenario[] = [
     ],
     ready: 'Evidence-based design applied. Not a copy — an upgrade.',
   },
+  {
+    request: '> Requesting: New hire onboarding course for IT team...',
+    override: 'SIGNAL: Analyzing request against existing resources.',
+    lines: [
+      '→ Knowledge base scan: 94% of content already documented',
+      '→ Existing wiki covers 11 of 12 onboarding tasks',
+      '→ Gap: 1 process (VPN setup) — needs 90-sec walkthrough',
+      '→ Training ROI: negative. Course would duplicate the wiki.',
+    ],
+    ready: 'No training needed. Send them the wiki. Orin saved you $14,000.',
+  },
 ];
 
 export default function ColdTerminal() {
