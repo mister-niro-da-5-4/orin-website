@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion } from 'framer-motion';
 
 /**
  * ColdTerminal — behaves like a real terminal session.
