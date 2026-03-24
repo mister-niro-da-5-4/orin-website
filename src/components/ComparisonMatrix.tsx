@@ -378,7 +378,7 @@ function CategoryGroup({
       <tr>
         <td
           colSpan={8}
-          className="pt-8 pb-3 text-[10px] font-mono tracking-[0.3em] text-gray-500 uppercase sticky left-0 bg-[#030303] z-10"
+          className="pt-8 pb-3 text-[10px] font-mono tracking-[0.3em] text-gray-500 uppercase bg-[#030303]"
         >
           {category}
         </td>
