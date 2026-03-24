@@ -41,7 +41,7 @@ export default function OrinVision() {
       <StatusTicker />
 
       {/* === Navigation — classification stamp === */}
-      <nav className="relative z-10 flex items-center justify-between p-6 md:p-10 border-b border-white/5">
+      <nav className="sticky top-0 z-50 flex items-center justify-between p-6 md:p-10 border-b border-white/5 bg-[#030303]/90 backdrop-blur-md">
         <div className="flex items-center gap-2.5">
           <OrinLogo variant="mark" size={28} animate />
           <span className="text-sm font-bold tracking-widest text-white">ORIN</span>
