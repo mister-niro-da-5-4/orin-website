@@ -1,5 +1,16 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { motion } from 'framer-motion';
+
+/**
+ * ColdTerminal — behaves like a real terminal session.
+ *
+ * Each scenario plays as a full sequence:
+ *   cursor blinks → request types in char by char → pause →
+ *   border flash → strikethrough → override types in → lines appear →
+ *   ready → hold → clear screen → next prompt starts typing
+ *
+ * No fades. No transitions. The typing IS the animation.
+ */
 
 interface Scenario {
   request: string;
@@ -66,103 +77,102 @@ const SCENARIOS: Scenario[] = [
   },
 ];
 
-type AnimPhase = 'typing' | 'pause' | 'rejected' | 'override' | 'lines' | 'ready' | 'hold' | 'fadeout';
-
 export default function ColdTerminal() {
   const [scenarioIdx, setScenarioIdx] = useState(0);
-  const [animPhase, setAnimPhase] = useState<AnimPhase>('typing');
-  const [typedText, setTypedText] = useState('');
-  const [overrideText, setOverrideText] = useState('');
+  const [requestChars, setRequestChars] = useState(0);
+  const [isRejected, setIsRejected] = useState(false);
+  const [overrideChars, setOverrideChars] = useState(0);
   const [visibleLines, setVisibleLines] = useState(0);
+  const [showReady, setShowReady] = useState(false);
   const [borderFlash, setBorderFlash] = useState(false);
-  const [visible, setVisible] = useState(true);
-  const timeouts = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const [cleared, setCleared] = useState(false);
+  const intervalsRef = useRef<ReturnType<typeof setInterval>[]>([]);
+  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const scenario = SCENARIOS[scenarioIdx];
 
-  // Clear all pending timeouts
-  const clearAllTimeouts = () => {
-    timeouts.current.forEach(clearTimeout);
-    timeouts.current = [];
-  };
+  const clearTimers = useCallback(() => {
+    intervalsRef.current.forEach(clearInterval);
+    timeoutsRef.current.forEach(clearTimeout);
+    intervalsRef.current = [];
+    timeoutsRef.current = [];
+  }, []);
 
-  const later = (fn: () => void, ms: number) => {
+  const later = useCallback((fn: () => void, ms: number) => {
     const t = setTimeout(fn, ms);
-    timeouts.current.push(t);
-    return t;
-  };
+    timeoutsRef.current.push(t);
+  }, []);
 
-  // Run the full animation sequence for the current scenario
+  // Run full sequence whenever scenarioIdx changes
   useEffect(() => {
-    clearAllTimeouts();
-    setTypedText('');
-    setOverrideText('');
+    clearTimers();
+
+    // Reset all state
+    setRequestChars(0);
+    setIsRejected(false);
+    setOverrideChars(0);
     setVisibleLines(0);
+    setShowReady(false);
     setBorderFlash(false);
-    setVisible(true);
-    setAnimPhase('typing');
+    setCleared(false);
 
-    const req = scenario.request;
-    const ovr = scenario.override;
+    // Small initial delay so the cleared screen is visible for a beat
+    later(() => {
+      // === STEP 1: Type the request ===
+      let rIdx = 0;
+      const reqInterval = setInterval(() => {
+        rIdx++;
+        setRequestChars(rIdx);
+        if (rIdx >= scenario.request.length) {
+          clearInterval(reqInterval);
 
-    // 1. Type the request
-    let charIdx = 0;
-    const typeReq = setInterval(() => {
-      charIdx++;
-      setTypedText(req.substring(0, charIdx));
-      if (charIdx >= req.length) {
-        clearInterval(typeReq);
-
-        // 2. Pause to let them read it
-        setAnimPhase('pause');
-        later(() => {
-          // 3. Flash + reject
-          setBorderFlash(true);
-          setAnimPhase('rejected');
-          later(() => setBorderFlash(false), 300);
-
-          // 4. Type the override
+          // === STEP 2: Pause, then reject ===
           later(() => {
-            setAnimPhase('override');
-            let ovrIdx = 0;
-            const typeOvr = setInterval(() => {
-              ovrIdx++;
-              setOverrideText(ovr.substring(0, ovrIdx));
-              if (ovrIdx >= ovr.length) {
-                clearInterval(typeOvr);
+            setBorderFlash(true);
+            setIsRejected(true);
+            later(() => setBorderFlash(false), 300);
 
-                // 5. Show lines one by one
-                setAnimPhase('lines');
-                scenario.lines.forEach((_, i) => {
-                  later(() => setVisibleLines(i + 1), 600 + i * 350);
-                });
+            // === STEP 3: Type the override ===
+            later(() => {
+              let oIdx = 0;
+              const ovrInterval = setInterval(() => {
+                oIdx++;
+                setOverrideChars(oIdx);
+                if (oIdx >= scenario.override.length) {
+                  clearInterval(ovrInterval);
 
-                // 6. Show ready
-                const linesTime = 600 + scenario.lines.length * 350 + 200;
-                later(() => setAnimPhase('ready'), linesTime);
+                  // === STEP 4: Show lines one by one ===
+                  scenario.lines.forEach((_, i) => {
+                    later(() => setVisibleLines(i + 1), 500 + i * 300);
+                  });
 
-                // 7. Hold, then fade out and advance
-                later(() => {
-                  setAnimPhase('fadeout');
-                  setVisible(false);
+                  // === STEP 5: Show ready ===
+                  const linesEnd = 500 + scenario.lines.length * 300 + 200;
+                  later(() => setShowReady(true), linesEnd);
+
+                  // === STEP 6: Hold, clear, advance ===
                   later(() => {
-                    setScenarioIdx((prev) => (prev + 1) % SCENARIOS.length);
-                  }, 600);
-                }, linesTime + 2500);
-              }
-            }, 30);
-          }, 500);
-        }, 800);
-      }
-    }, 45);
+                    setCleared(true);
+                    later(() => {
+                      setScenarioIdx((prev) => (prev + 1) % SCENARIOS.length);
+                    }, 400);
+                  }, linesEnd + 3000);
+                }
+              }, 25); // Override types faster — the system is more fluent
+              intervalsRef.current.push(ovrInterval);
+            }, 400);
+          }, 800);
+        }
+      }, 45);
+      intervalsRef.current.push(reqInterval);
+    }, 300);
 
-    return () => {
-      clearInterval(typeReq);
-      clearAllTimeouts();
-    };
-  }, [scenarioIdx]);
+    return clearTimers;
+  }, [scenarioIdx, scenario, clearTimers, later]);
 
-  const isRejected = animPhase !== 'typing' && animPhase !== 'pause';
+  const showingOverride = overrideChars > 0;
+  const typingRequest = requestChars > 0 && requestChars < scenario.request.length;
+  const typingOverride = showingOverride && overrideChars < scenario.override.length;
 
   return (
     <motion.div
@@ -202,66 +212,57 @@ export default function ColdTerminal() {
         <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
       </div>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={scenarioIdx}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: visible ? 1 : 0 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
-        >
+      {/* Terminal content — no transitions, just state */}
+      {!cleared && (
+        <div className="text-sm">
           {/* The request — typing or struck through */}
           {!isRejected ? (
-            <p className="text-gray-400 text-sm">
-              {typedText}<span className="animate-pulse">_</span>
+            <p className="text-gray-400">
+              {scenario.request.substring(0, requestChars)}
+              {(typingRequest || requestChars === 0) && (
+                <span className="animate-pulse">_</span>
+              )}
+              {/* Blinking cursor during the pause after typing finishes */}
+              {requestChars >= scenario.request.length && (
+                <span className="animate-pulse">_</span>
+              )}
             </p>
           ) : (
-            <p className="text-red-500/40 line-through decoration-2 text-sm">
+            <p className="text-red-500/40 line-through decoration-2">
               {scenario.request}
             </p>
           )}
 
-          {/* The override — types in after rejection */}
-          {overrideText && (
-            <p className="mt-3 text-[#FF4F00] font-bold flex items-start gap-2 text-sm"
+          {/* The override — types character by character */}
+          {showingOverride && (
+            <p className="mt-3 text-[#FF4F00] font-bold flex items-start gap-2"
                style={{ textShadow: '0 0 10px rgba(255, 79, 0, 0.25)' }}>
               <span className="shrink-0 mt-0.5">▌</span>
               <span>
-                {overrideText}
-                {overrideText.length < scenario.override.length && (
-                  <span className="animate-pulse">_</span>
-                )}
+                {scenario.override.substring(0, overrideChars)}
+                {typingOverride && <span className="animate-pulse">_</span>}
               </span>
             </p>
           )}
 
-          {/* Confirmation lines */}
-          {scenario.lines.slice(0, visibleLines).map((line, i) => (
-            <motion.p
-              key={i}
-              initial={{ opacity: 0, x: -4 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3 }}
-              className="text-gray-500 text-xs mt-1"
-            >
-              {line}
-            </motion.p>
-          ))}
+          {/* Confirmation lines — appear one by one */}
+          {visibleLines > 0 && (
+            <div className="mt-3">
+              {scenario.lines.slice(0, visibleLines).map((line, i) => (
+                <p key={i} className="text-gray-500 text-xs mt-1">{line}</p>
+              ))}
+            </div>
+          )}
 
           {/* Ready */}
-          {(animPhase === 'ready' || animPhase === 'hold' || animPhase === 'fadeout') && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              className="text-emerald-500/70 text-xs mt-3 flex items-center gap-1.5"
-            >
+          {showReady && (
+            <p className="text-emerald-500/70 text-xs mt-3 flex items-center gap-1.5">
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500/70" />
               {scenario.ready}
-            </motion.p>
+            </p>
           )}
-        </motion.div>
-      </AnimatePresence>
+        </div>
+      )}
     </motion.div>
   );
 }
