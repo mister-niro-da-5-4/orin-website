@@ -11,18 +11,6 @@ html {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Force GPU compositing on animated layers */
-[style*="transform"] {
-  will-change: transform;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-/* Nav gets its own compositing layer immediately — prevents first-scroll jank */
-nav {
-  transform: translateZ(0);
-  will-change: transform;
-}
 
 ::-webkit-scrollbar {
   width: 4px;
