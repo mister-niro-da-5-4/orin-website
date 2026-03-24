@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#030303"/>
+
+  <!-- Grid dots -->
+  <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+    <circle cx="20" cy="20" r="0.5" fill="white" opacity="0.06"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+
+  <!-- Ambient glow -->
+  <ellipse cx="600" cy="280" rx="250" ry="180" fill="#FF4F00" opacity="0.04"/>
+
+  <!-- Orin mark -->
+  <g transform="translate(510, 160)">
+    <circle cx="50" cy="50" r="44" stroke="#FF4F00" stroke-width="2" fill="none"/>
+    <ellipse cx="50" cy="50" rx="37" ry="15" stroke="#FF4F00" stroke-width="1" stroke-opacity="0.3" fill="none" transform="rotate(-30 50 50)"/>
+    <defs>
+      <radialGradient id="core" cx="40%" cy="35%" r="60%">
+        <stop offset="0%" stop-color="#ffad73"/>
+        <stop offset="40%" stop-color="#FF4F00"/>
+        <stop offset="100%" stop-color="#7a2500"/>
+      </radialGradient>
+    </defs>
+    <circle cx="50" cy="50" r="12" fill="url(#core)"/>
+    <circle cx="47" cy="46" r="3" fill="white" opacity="0.4"/>
+  </g>
+
+  <!-- ORIN wordmark -->
+  <text x="600" y="302" text-anchor="middle" fill="white" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="56" letter-spacing="14">ORIN</text>
+
+  <!-- Divider -->
+  <line x1="480" y1="325" x2="720" y2="325" stroke="#FF4F00" stroke-width="1" stroke-opacity="0.3"/>
+
+  <!-- Tagline -->
+  <text x="600" y="365" text-anchor="middle" fill="#888888" font-family="ui-monospace, monospace" font-weight="400" font-size="16" letter-spacing="4">THE FIRST LEARNING EXPERIENCE DESIGN SYSTEM</text>
+
+  <!-- Provocation -->
+  <text x="600" y="440" text-anchor="middle" fill="#555555" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="22">Stop building courses. Start architecting performance.</text>
+
+  <!-- URL -->
+  <text x="600" y="560" text-anchor="middle" fill="#333333" font-family="ui-monospace, monospace" font-size="13" letter-spacing="3">ORINLXDS.COM</text>
+
+  <!-- Bottom accent -->
+  <rect x="0" y="626" width="1200" height="4" fill="#FF4F00" opacity="0.2"/>
+</svg>
