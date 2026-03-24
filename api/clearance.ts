@@ -16,7 +16,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     await resend.emails.send({
-      from: 'Orin LXDS <onboarding@resend.dev>',
+      from: 'Orin LXDS <signal@orinlxds.com>',
       to: 'signal@orinlxds.com',
       subject: `Clearance Request: ${name} — ${role}`,
       html: `
