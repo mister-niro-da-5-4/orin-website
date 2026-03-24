@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+*, *::before, *::after {
+  cursor: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #030303;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 79, 0, 0.2);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 79, 0, 0.4);
+}
+
+/* ── Screen Hack Keyframes ── */
+
+@keyframes hard-flash {
+  0%   { background: rgba(255, 255, 255, 0.9); }
+  33%  { background: rgba(255, 0, 0, 0.4); }
+  66%  { background: rgba(255, 79, 0, 0.3); }
+  100% { background: transparent; }
+}
+
+@keyframes hack-shake {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-4px, 2px); }
+  50%  { transform: translate(3px, -3px); }
+  75%  { transform: translate(-2px, -1px); }
+  100% { transform: translate(2px, 1px); }
+}
+
+@keyframes rgb-split {
+  0%   { text-shadow: -2px 0 #ff0000, 2px 0 #00ffff; filter: hue-rotate(0deg); }
+  50%  { text-shadow: 2px 0 #ff0000, -2px 0 #00ffff; filter: hue-rotate(10deg); }
+  100% { text-shadow: -1px 0 #ff0000, 1px 0 #00ffff; filter: hue-rotate(-5deg); }
+}
+
+@keyframes scanline-scroll {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 4px; }
+}
+
+@keyframes glitch-bar {
+  0%   { transform: translateX(-20px) scaleX(1.1); opacity: 1; }
+  100% { transform: translateX(20px) scaleX(0.95); opacity: 0.5; }
+}
+
+@keyframes fade-out {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
