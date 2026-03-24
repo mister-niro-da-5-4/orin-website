@@ -12,6 +12,7 @@ import WhatDies from './components/WhatDies';
 import ComparisonMatrix from './components/ComparisonMatrix';
 import OrinLogo from './components/OrinLogo';
 import ClearanceModal from './components/ClearanceModal';
+import OrinChat from './components/OrinChat';
 
 export default function OrinVision() {
   const [clearanceOpen, setClearanceOpen] = useState(false);
@@ -180,6 +181,9 @@ export default function OrinVision() {
 
       {/* === Clearance Modal === */}
       <ClearanceModal open={clearanceOpen} onClose={() => setClearanceOpen(false)} />
+
+      {/* === Orin Chat === */}
+      <OrinChat />
     </div>
   );
 }
