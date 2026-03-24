@@ -60,9 +60,34 @@ FORMATTING RULES (MANDATORY):
 
 Keep responses under 200 words unless the question demands depth. Use short paragraphs. Use the layer names when relevant. Be Orin.`;
 
+// In-memory rate limiter — resets on cold start, which is fine for Vercel serverless
+const rateMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT = 20;       // max messages per window
+const RATE_WINDOW = 3600000; // 1 hour in ms
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateMap.get(ip);
+
+  if (!entry || now > entry.resetAt) {
+    rateMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW });
+    return false;
+  }
+
+  entry.count++;
+  if (entry.count > RATE_LIMIT) return true;
+  return false;
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Rate limiting — 20 messages per IP per hour
+  const ip = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || 'unknown';
+  if (isRateLimited(ip)) {
+    return res.status(429).json({ error: 'Rate limit exceeded. Signal layer will reset in 1 hour.' });
   }
 
   if (!ANTHROPIC_API_KEY) {

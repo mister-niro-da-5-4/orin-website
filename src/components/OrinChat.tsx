@@ -45,7 +45,9 @@ export default function OrinChat() {
       const data = await res.json();
       const assistantMsg: Message = {
         role: 'assistant',
-        content: data.response || 'Signal layer unavailable. Try again.',
+        content: res.status === 429
+          ? 'RATE LIMIT: Signal layer throttled. Resets in 1 hour. For immediate access, contact signal@orinlxds.com.'
+          : data.response || 'Signal layer unavailable. Try again.',
       };
       setMessages([...updated, assistantMsg]);
     } catch {
