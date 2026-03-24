@@ -1,7 +1,10 @@
 @import "tailwindcss";
 
-*, *::before, *::after {
-  cursor: none !important;
+/* Hide cursor only on devices with a fine pointer (mouse/trackpad) */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
 }
 
 html {

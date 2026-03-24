@@ -6,7 +6,11 @@ export default function CustomCursor() {
   const pos = useRef({ x: -100, y: -100 });
   const smoothPos = useRef({ x: -100, y: -100 });
 
+  // Don't render on touch devices
+  const isTouch = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
+
   useEffect(() => {
+    if (isTouch) return;
     let raf: number;
 
     const handleMove = (e: MouseEvent) => {
@@ -34,7 +38,9 @@ export default function CustomCursor() {
       window.removeEventListener('mousemove', handleMove);
       cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [isTouch]);
+
+  if (isTouch) return null;
 
   return (
     <>

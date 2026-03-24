@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Orin LXDS</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #030303;
+      color: #999;
+      font-family: ui-monospace, monospace;
+      text-align: center;
+      padding: 2rem;
+    }
+    .code {
+      font-size: 72px;
+      font-weight: 800;
+      color: #FF4F00;
+      letter-spacing: 8px;
+      text-shadow: 0 0 30px rgba(255, 79, 0, 0.3);
+    }
+    .msg {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #555;
+      letter-spacing: 2px;
+    }
+    .override {
+      margin-top: 24px;
+      font-size: 13px;
+      color: #FF4F00;
+      font-weight: bold;
+    }
+    a {
+      display: inline-block;
+      margin-top: 32px;
+      padding: 12px 32px;
+      border: 1px solid rgba(255, 79, 0, 0.4);
+      color: #FF4F00;
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    a:hover {
+      background: #FF4F00;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="code">404</div>
+  <div class="msg">NODE NOT FOUND IN GRAPH</div>
+  <div class="override">▌ SIGNAL: Rerouting to origin.</div>
+  <a href="/">Return to Orin</a>
+</body>
+</html>

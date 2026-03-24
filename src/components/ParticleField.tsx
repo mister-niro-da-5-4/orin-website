@@ -41,8 +41,11 @@ export default function ParticleField() {
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('resize', onResize);
 
-    // Node state — plain arrays for cache-friendly iteration
-    const count = Math.min(80, Math.floor((width * height) / 12000));
+    // Fewer particles on mobile to save battery
+    const isMobile = width < 768;
+    const count = isMobile
+      ? Math.min(30, Math.floor((width * height) / 20000))
+      : Math.min(80, Math.floor((width * height) / 12000));
     const x = new Float32Array(count);
     const y = new Float32Array(count);
     const vx = new Float32Array(count);
