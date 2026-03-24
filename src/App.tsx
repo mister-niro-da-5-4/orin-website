@@ -73,46 +73,48 @@ export default function OrinVision() {
         style={{ y: heroY, opacity: heroOpacity }}
         className="relative z-10 max-w-7xl mx-auto px-6 pt-40 pb-24 flex flex-col items-center text-center"
       >
-        {/* LXDS brow — the classification */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="text-[11px] font-mono tracking-[0.4em] text-gray-500 uppercase mb-6"
+        {/* THE HOOK — one painful fact, then the system responds */}
+        <motion.h1
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4"
         >
-          Learning Experience Design System
-        </motion.p>
-
-        {/* ORIN — the name, massive */}
-        <motion.div
+          Your last compliance training had a
+        </motion.h1>
+        <motion.span
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-4"
+          transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-5xl md:text-8xl font-extrabold text-[#FF4F00] tracking-tight mb-2"
+          style={{ textShadow: '0 0 40px rgba(255, 79, 0, 0.3)' }}
         >
-          <OrinLogo variant="full" size={80} animate />
-        </motion.div>
-
-        {/* The provocation */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-4xl md:text-6xl font-extrabold text-white tracking-tight mt-10 mb-6"
+          12% retention rate.
+        </motion.span>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="text-gray-500 text-lg mt-4 mb-10"
         >
-          Stop building courses.<br />
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-100"
-          >
-            Start architecting performance.
-          </motion.span>
-        </motion.h1>
+          This is what happens next.
+        </motion.p>
 
-        {/* The Terminal — Cold Takeover */}
+        {/* The Terminal — the system responds */}
         <ColdTerminal />
+
+        {/* Brand reveal — earned after the hook */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 4 }}
+          className="mt-12 flex flex-col items-center gap-3"
+        >
+          <OrinLogo variant="full" size={48} />
+          <p className="text-[11px] font-mono tracking-[0.4em] text-gray-600 uppercase">
+            The first Learning Experience Design System
+          </p>
+        </motion.div>
       </motion.main>
 
       {/* === Request Flow — the story of one request through all 5 layers === */}
