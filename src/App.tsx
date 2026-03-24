@@ -82,22 +82,14 @@ export default function OrinVision() {
           <OrinLogo variant="full" size={80} animate />
         </motion.div>
 
-        {/* The provocation — hits right after the logo, no buffer */}
+        {/* The thesis — three words */}
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-4xl md:text-6xl font-extrabold text-white tracking-tight mt-10 mb-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-3xl md:text-5xl font-bold text-white tracking-tight mt-10 mb-6 font-mono"
         >
-          Stop building courses.<br />
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-100"
-          >
-            Start architecting performance.
-          </motion.span>
+          Courses are software.
         </motion.h1>
 
         {/* The Terminal — Cold Takeover */}
