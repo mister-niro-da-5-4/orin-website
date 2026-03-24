@@ -175,9 +175,6 @@ export default function OrinVision() {
           <span className="text-[10px] text-gray-600 tracking-wide mt-2">
             An <span className="text-gray-400 font-medium">Artie Ai</span> Company
           </span>
-          <span className="text-[10px] text-gray-600 tracking-wide mt-1">
-            Built by <a href="https://www.linkedin.com/in/niroalexandertep/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#FF4F00] transition-colors">Niro Tep</a>
-          </span>
         </div>
       </motion.footer>
 
