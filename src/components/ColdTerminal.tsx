@@ -219,9 +219,8 @@ export default function ColdTerminal() {
         <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
       </div>
 
-      {/* Terminal content — no transitions, just state */}
-      {!cleared && (
-        <div className="text-sm">
+      {/* Terminal content — opacity hides between scenarios, never unmounts */}
+        <div className="text-sm" style={{ opacity: cleared ? 0 : 1, transition: 'opacity 0.3s ease' }}>
           {/* The request — typing or struck through */}
           {!isRejected ? (
             <p className="text-gray-400">
@@ -269,7 +268,6 @@ export default function ColdTerminal() {
             </p>
           )}
         </div>
-      )}
     </div>
   );
 }
