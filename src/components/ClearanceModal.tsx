@@ -46,9 +46,18 @@ export default function ClearanceModal({
     if (step === 'intent') setTimeout(() => intentRef.current?.focus(), 300);
   }, [step]);
 
-  const handleSubmit = () => {
-    // In production, POST to an API. For now, just confirm.
+  const handleSubmit = async () => {
     setStep('confirmed');
+    try {
+      await fetch('/api/clearance', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, org, role, intent }),
+      });
+    } catch {
+      // Silently fail — the user already sees the confirmation.
+      // Better UX than blocking on a network error.
+    }
   };
 
   return (
