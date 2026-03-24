@@ -78,7 +78,7 @@ const FEATURES: Feature[] = [
     orin: 'full',
     orinNote: 'Native — graph edges with conditions',
     competitors: {
-      'Sana Learn': { level: 'partial', note: 'Limited conditional paths' },
+      'Sana Learn': { level: 'partial', note: 'Basic paths, no rich scenarios' },
       'Articulate 360': { level: 'partial', note: 'Storyline only, manual' },
       'Captivate': { level: 'partial', note: 'Limited' },
       'Lectora': { level: 'partial', note: 'Supported' },
@@ -166,7 +166,7 @@ const FEATURES: Feature[] = [
     competitors: {
       'Sana Learn': { level: 'partial', note: 'Basic' },
       'Articulate 360': { level: 'partial', note: 'Checker tool' },
-      'Captivate': { level: 'partial', note: 'WCAG, keyboard nav, captions' },
+      'Captivate': { level: 'partial', note: 'Manual tools + checker, no ambient' },
       'Lectora': { level: 'partial', note: 'Strong — 508 check tool + WCAG 2.2' },
       'iSpring': { level: 'partial', note: 'Basic' },
       'Elucidat': { level: 'partial', note: 'Basic' },
@@ -241,7 +241,7 @@ const FEATURES: Feature[] = [
       'Captivate': { level: 'none', note: 'Cloud review links' },
       'Lectora': { level: 'none' },
       'iSpring': { level: 'none' },
-      'Elucidat': { level: 'partial', note: 'Multi-author editing' },
+      'Elucidat': { level: 'partial', note: 'Cloud editing, not multiplayer' },
     },
   },
   {
