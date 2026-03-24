@@ -162,7 +162,7 @@ const FEATURES: Feature[] = [
     category: 'Accessibility',
     name: 'Ambient accessibility engine',
     orin: 'full',
-    orinNote: 'Always-on WCAG 2.2 AA — contrast, focus order, ARIA, alt text',
+    orinNote: 'Always-on WCAG 2.2 AA',
     competitors: {
       'Sana Learn': { level: 'partial', note: 'Basic' },
       'Articulate 360': { level: 'partial', note: 'Checker tool' },
@@ -234,7 +234,7 @@ const FEATURES: Feature[] = [
     category: 'Collaboration',
     name: 'Real-time multiplayer',
     orin: 'full',
-    orinNote: 'CRDTs — conflict-free, offline-first',
+    orinNote: 'CRDTs, offline-first',
     competitors: {
       'Sana Learn': { level: 'full', note: 'Real-time collaborative authoring' },
       'Articulate 360': { level: 'none', note: 'Review comments only' },
