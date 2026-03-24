@@ -113,7 +113,7 @@ export default function OrinVision() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 8 }}
+          transition={{ duration: 1.2, delay: 12 }}
           className="mt-12 flex flex-col items-center gap-3"
         >
           <OrinLogo variant="full" size={48} />
