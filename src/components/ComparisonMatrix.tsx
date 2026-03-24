@@ -78,7 +78,7 @@ const FEATURES: Feature[] = [
     orin: 'full',
     orinNote: 'Native — graph edges with conditions',
     competitors: {
-      'Sana Learn': { level: 'partial', note: 'Basic paths, no rich scenarios' },
+      'Sana Learn': { level: 'partial', note: 'Basic paths, not scenario-first' },
       'Articulate 360': { level: 'partial', note: 'Storyline only, manual' },
       'Captivate': { level: 'partial', note: 'Limited' },
       'Lectora': { level: 'partial', note: 'Supported' },
@@ -165,7 +165,7 @@ const FEATURES: Feature[] = [
     orinNote: 'Always-on WCAG 2.2 AA',
     competitors: {
       'Sana Learn': { level: 'partial', note: 'Basic' },
-      'Articulate 360': { level: 'partial', note: 'Checker tool' },
+      'Articulate 360': { level: 'partial', note: 'Manual checks, no ambient' },
       'Captivate': { level: 'partial', note: 'Manual tools + checker, no ambient' },
       'Lectora': { level: 'partial', note: 'Strong — 508 check tool + WCAG 2.2' },
       'iSpring': { level: 'partial', note: 'Basic' },
