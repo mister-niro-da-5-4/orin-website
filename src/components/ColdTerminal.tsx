@@ -186,10 +186,7 @@ export default function ColdTerminal() {
   const typingOverride = showingOverride && overrideChars < scenario.override.length;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.5, duration: 0.8 }}
+    <div
       className="mt-12 w-full max-w-2xl rounded-lg p-6 text-left font-mono shadow-2xl relative overflow-hidden backdrop-blur-sm"
       style={{
         height: 260,
@@ -274,6 +271,6 @@ export default function ColdTerminal() {
           )}
         </div>
       )}
-    </motion.div>
+    </div>
   );
 }
