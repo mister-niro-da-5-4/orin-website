@@ -77,7 +77,7 @@ export default function OrinVision() {
         <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
           className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4"
         >
           Your last compliance training had a
@@ -85,7 +85,7 @@ export default function OrinVision() {
         <motion.span
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1, delay: 1.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-5xl md:text-8xl font-extrabold text-[#FF4F00] tracking-tight mb-2"
           style={{ textShadow: '0 0 40px rgba(255, 79, 0, 0.3)' }}
         >
@@ -94,20 +94,26 @@ export default function OrinVision() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
+          transition={{ duration: 1, delay: 3.5 }}
           className="text-gray-500 text-lg mt-4 mb-10"
         >
           This is what happens next.
         </motion.p>
 
         {/* The Terminal — the system responds */}
-        <ColdTerminal />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 5 }}
+        >
+          <ColdTerminal />
+        </motion.div>
 
         {/* Brand reveal — earned after the hook */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 4 }}
+          transition={{ duration: 1.2, delay: 8 }}
           className="mt-12 flex flex-col items-center gap-3"
         >
           <OrinLogo variant="full" size={48} />
