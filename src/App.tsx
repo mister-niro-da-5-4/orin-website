@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import ParticleField from './components/ParticleField';
 import StatusTicker from './components/StatusTicker';
@@ -14,10 +14,7 @@ import OrinLogo from './components/OrinLogo';
 import ClearanceModal from './components/ClearanceModal';
 
 export default function OrinVision() {
-  const [terminalText, setTerminalText] = useState('');
   const [clearanceOpen, setClearanceOpen] = useState(false);
-  const [isRejected, setIsRejected] = useState(false);
-  const fullText = "> Requesting: 30-min compliance SCORM package...";
 
   // Scroll-driven parallax refs
   const heroRef = useRef<HTMLDivElement>(null);
@@ -29,20 +26,6 @@ export default function OrinVision() {
 
   const { scrollYProgress: footerScroll } = useScroll({ target: footerRef, offset: ['start end', 'start 0.5'] });
   const footerY = useTransform(footerScroll, [0, 1], [60, 0]);
-
-  // Hero Terminal Typing Effect
-  useEffect(() => {
-    let i = 0;
-    const typing = setInterval(() => {
-      setTerminalText(fullText.substring(0, i));
-      i++;
-      if (i > fullText.length) {
-        clearInterval(typing);
-        setTimeout(() => setIsRejected(true), 800);
-      }
-    }, 50);
-    return () => clearInterval(typing);
-  }, []);
 
 
   return (
@@ -118,11 +101,7 @@ export default function OrinVision() {
         </motion.h1>
 
         {/* The Terminal — Cold Takeover */}
-        <ColdTerminal
-          fullText={fullText}
-          typedText={terminalText}
-          isRejected={isRejected}
-        />
+        <ColdTerminal />
       </motion.main>
 
       {/* === Request Flow — the story of one request through all 5 layers === */}
