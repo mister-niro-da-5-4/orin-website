@@ -322,13 +322,18 @@ export default function ComparisonMatrix() {
         </div>
       </motion.div>
 
+      {/* Mobile scroll hint */}
+      <p className="text-[10px] text-gray-600 font-mono tracking-wider mb-3 md:hidden">
+        ← SCROLL TO COMPARE →
+      </p>
+
       {/* Matrix */}
       <div className="overflow-x-auto -mx-6 px-6">
         <table className="w-full min-w-[900px] border-collapse">
           {/* Header */}
           <thead>
             <tr className="border-b border-white/10">
-              <th className="text-left py-4 pr-4 text-sm font-bold text-white w-[240px] sticky left-0 bg-[#030303] z-10">
+              <th className="text-left py-4 pr-4 text-sm font-bold text-white w-[240px] bg-[#030303]">
                 Capability
               </th>
               <th className="py-4 px-3 text-center w-[90px]">
@@ -396,7 +401,7 @@ function CategoryGroup({
           >
             {/* Feature name — clickable to expand */}
             <td
-              className="py-3 pr-4 text-sm text-gray-300 sticky left-0 bg-[#030303] z-10 cursor-pointer"
+              className="py-3 pr-4 text-sm text-gray-300 bg-[#030303] cursor-pointer"
               onClick={() => setExpanded(isOpen ? null : rowId)}
             >
               <div className="flex items-center gap-2">
