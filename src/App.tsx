@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import ParticleField from './components/ParticleField';
 import StatusTicker from './components/StatusTicker';
 import MetricsCounter from './components/MetricsCounter';
@@ -16,6 +16,7 @@ import OrinChat from './components/OrinChat';
 
 export default function OrinVision() {
   const [clearanceOpen, setClearanceOpen] = useState(false);
+  const [showDenied, setShowDenied] = useState(false);
 
   // Scroll-driven parallax refs
   const heroRef = useRef<HTMLDivElement>(null);
@@ -48,13 +49,22 @@ export default function OrinVision() {
           <span className="text-gray-600 font-light mx-0.5">|</span>
           <span className="text-[10px] font-mono tracking-[0.3em] text-gray-500 uppercase">LXDS</span>
         </div>
-        <button
-          type="button"
-          onClick={() => setClearanceOpen(true)}
-          className="px-5 py-2 text-sm uppercase tracking-wider border border-[#FF4F00]/50 text-[#FF4F00] hover:bg-[#FF4F00] hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(255,79,0,0.2)] hover:shadow-[0_0_30px_rgba(255,79,0,0.4)]"
-        >
-          Request Clearance
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => setShowDenied(true)}
+            className="px-4 py-2 text-xs uppercase tracking-wider text-gray-500 hover:text-gray-300 transition-colors font-mono"
+          >
+            Log In
+          </button>
+          <button
+            type="button"
+            onClick={() => setClearanceOpen(true)}
+            className="px-5 py-2 text-sm uppercase tracking-wider border border-[#FF4F00]/50 text-[#FF4F00] hover:bg-[#FF4F00] hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(255,79,0,0.2)] hover:shadow-[0_0_30px_rgba(255,79,0,0.4)]"
+          >
+            Request Clearance
+          </button>
+        </div>
       </nav>
 
       {/* === Hero Section with Parallax === */}
@@ -184,6 +194,48 @@ export default function OrinVision() {
 
       {/* === Orin Chat === */}
       <OrinChat />
+
+      {/* === Access Denied Overlay === */}
+      <AnimatePresence>
+        {showDenied && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowDenied(false)}
+              className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed inset-x-4 top-[25%] md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-sm z-[101] bg-[#0a0a0a] border border-red-500/20 rounded-lg p-8 text-center font-mono"
+            >
+              <div className="w-3 h-3 rounded-full bg-red-500/60 mx-auto mb-5 animate-pulse" />
+              <p className="text-red-500/80 text-xs tracking-[0.2em] uppercase mb-3">Access Denied</p>
+              <p className="text-gray-400 text-sm mb-6">You don't have clearance yet.</p>
+              <div className="flex gap-3 justify-center">
+                <button
+                  type="button"
+                  onClick={() => setShowDenied(false)}
+                  className="px-4 py-2 text-xs text-gray-500 border border-white/5 rounded hover:border-white/20 transition-colors"
+                >
+                  Dismiss
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setShowDenied(false); setClearanceOpen(true); }}
+                  className="px-5 py-2 text-xs text-black bg-[#FF4F00] rounded font-bold tracking-wider uppercase hover:bg-white transition-colors"
+                >
+                  Request Clearance
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
