@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Terminal, Network, Cpu, ShieldAlert, Activity } from 'lucide-react';
 
 const STEPS = [
@@ -188,7 +188,7 @@ export default function RequestFlow() {
       <div ref={containerRef} className="relative">
         <div className="absolute left-[19px] md:left-[23px] top-0 bottom-0 w-[1px] bg-gradient-to-b from-violet-500/20 via-[#FF4F00]/20 to-cyan-400/20" />
 
-        {STEPS.map((step, idx) => (
+        {STEPS.map((step) => (
           <motion.div
             key={step.layer}
             initial={{ opacity: 0, x: -20 }}

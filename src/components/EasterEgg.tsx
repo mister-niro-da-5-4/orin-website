@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const SEQUENCE = ['o', 'r', 'i', 'n'];
 
 export default function EasterEgg() {
-  const [buffer, setBuffer] = useState<string[]>([]);
+  const [, setBuffer] = useState<string[]>([]);
   const [triggered, setTriggered] = useState(false);
 
   useEffect(() => {
