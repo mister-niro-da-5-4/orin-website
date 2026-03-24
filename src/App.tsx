@@ -30,7 +30,7 @@ export default function OrinVision() {
 
 
   return (
-    <div className="min-h-screen bg-[#030303] text-gray-300 font-sans selection:bg-[#FF4F00] selection:text-white overflow-hidden">
+    <div className="min-h-screen bg-[#030303] text-gray-300 font-sans selection:bg-[#FF4F00] selection:text-white overflow-x-hidden">
 
       {/* === Global Layers === */}
       <ParticleField />
