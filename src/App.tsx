@@ -105,6 +105,7 @@ export default function OrinVision() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 5 }}
+          className="w-full max-w-[672px]"
         >
           <ColdTerminal />
         </motion.div>

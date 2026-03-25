@@ -186,10 +186,9 @@ export default function ColdTerminal() {
 
   return (
     <div
-      className="mt-12 rounded-lg p-6 text-left font-mono shadow-2xl relative overflow-hidden backdrop-blur-sm self-stretch md:self-center"
+      className="mt-12 rounded-lg p-6 text-left font-mono shadow-2xl relative overflow-hidden backdrop-blur-sm w-full md:w-[672px]"
       style={{
         maxWidth: 672,
-        minHeight: 260,
         height: 260,
         backgroundColor: 'rgba(0, 0, 0, 0.85)',
         border: borderFlash
