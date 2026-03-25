@@ -13,6 +13,7 @@ import ComparisonMatrix from './components/ComparisonMatrix';
 import OrinLogo from './components/OrinLogo';
 import ClearanceModal from './components/ClearanceModal';
 import OrinChat from './components/OrinChat';
+import ImmersiveSim from './components/ImmersiveSim';
 
 export default function OrinVision() {
   const [clearanceOpen, setClearanceOpen] = useState(false);
@@ -126,6 +127,9 @@ export default function OrinVision() {
 
       {/* === Request Flow — the story of one request through all 5 layers === */}
       <RequestFlow />
+
+      {/* === Immersive Sim — the visitor becomes the learner === */}
+      <ImmersiveSim />
 
       {/* === Philosophy — the four non-negotiable principles === */}
       <PhilosophyCards />
