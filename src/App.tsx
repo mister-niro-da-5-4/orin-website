@@ -32,7 +32,7 @@ export default function OrinVision() {
 
 
   return (
-    <div className="min-h-screen bg-[#030303] text-gray-300 font-sans selection:bg-[#FF4F00] selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-[#030303] text-gray-300 font-sans selection:bg-[#FF4F00] selection:text-white" style={{ overflowX: 'clip' }}>
 
       {/* === Global Layers === */}
       <ParticleField />
@@ -51,6 +51,14 @@ export default function OrinVision() {
           <span className="text-[10px] font-mono tracking-[0.3em] text-gray-500 uppercase">LXDS</span>
         </div>
         <div className="flex items-center gap-3">
+          <a
+            href="https://orin-edu.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 text-xs uppercase tracking-wider text-gray-500 hover:text-white transition-colors font-mono flex items-center gap-1.5"
+          >
+            Orin<sup className="text-[8px] text-[#FF4F00] font-bold">E</sup>
+          </a>
           <button
             type="button"
             onClick={() => setShowDenied(true)}
@@ -71,7 +79,7 @@ export default function OrinVision() {
       {/* === Hero Section with Parallax === */}
       <motion.main
         ref={heroRef}
-        style={{ y: heroY, opacity: heroOpacity }}
+        style={{ y: heroY, opacity: heroOpacity, willChange: 'transform, opacity' }}
         className="relative z-10 max-w-7xl mx-auto px-6 pt-40 pb-24 flex flex-col items-center text-center"
       >
         {/* THE HOOK — one painful fact, then the system responds */}
